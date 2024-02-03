@@ -8,7 +8,7 @@ const server = express()
 server.use(express.json())
 dotenv.config()
 server.use(cors({
-    origin: 'https://moneymoasic.netlify.app/',
+    origin: 'https://moneymoasic.netlify.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     exposedHeaders: ['Content-Length', 'Authorization'],
