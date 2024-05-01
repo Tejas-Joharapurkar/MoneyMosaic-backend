@@ -22,9 +22,10 @@ const ExpenseSchema = new mongoose.Schema({
             category: { type: String, required: true },
             amount: { type: Number, required: true },
             currentamount: { type: Number, required: true },
-            date: { type: Date, default: Date.now },
+            _id: String
         },
     ],
+    spendings: [{ day: { type: Number }, totalspend: { type: Number } }]
 });
 
 export default mongoose.model("Expense", ExpenseSchema)
