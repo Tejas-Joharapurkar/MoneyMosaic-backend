@@ -11,7 +11,7 @@ export const register = async (req, res, next) => {
         res.cookie('JWT', token, {
             expires: new Date(Date.now() + 2589200000),
             httpOnly: true
-        }).json({ _id, username, balance, spend })
+        }).json({ _id, username })
         console.log(4);
     } catch (error) {
         res.status(401).send(error.message)

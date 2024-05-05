@@ -23,7 +23,7 @@ export const Getexpense = async (req, res) => {
         if (expense) {
             res.status(201).json({ expense, transaction: transaction.transactions });
         } else {
-            res.status(404).json({ mag: 'not found' })
+            res.status(404).json({ msg: "not found" })
         }
         console.log("getExpense successful");
     } catch (error) {
@@ -52,11 +52,11 @@ export const Addexpense = async (req, res) => {
                 current_expenses.spendings.push({ day: currentday, totalspend: amount })
             }
             await current_expenses.save();
-            const transaction_history = await Transaction.findOne({ user: userId, month })
-            if (transaction_history) {
-                transaction_history.transactions.push({ category, amount, desc, date: currentday })
-                await transaction_history.save()
-                res.status(201).json({ current_expenses, transaction_history, msg: "expenditure added successfully" })
+            const transaction = await Transaction.findOne({ user: userId, month })
+            if (transaction) {
+                transaction.transactions.push({ category, amount, desc, date: currentday })
+                await transaction.save()
+                res.status(201).json({ current_expenses, transaction, msg: "expenditure added successfully" })
             } else {
                 const newtransaction = { user: userId, month, transactions: [{ category, amount, desc, date: currentday }] }
                 const transaction = await Transaction.create(newtransaction)
